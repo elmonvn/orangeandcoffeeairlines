@@ -34,6 +34,10 @@ Fortalezas: disposição permanente para novos desafios e aprendizados, experiê
 
 Pontos de melhoria: pouca experiência em metodologias ágeis, gestão do tempo
 
+Sobre Marco: Larga experiência em projetos comerciais, industriais no ramo de software bem como já desenvolveu em .Net
+
+Fortalezas: Flexibilidade, criatividade, resiliente, autodidata e espírito de equipe.
+
 Sobre Gleydson:
 Graduado em Ciência da Computação pela Universidade Federal da Paraíba, com experiência de mais de 3 anos com .NET.
 
