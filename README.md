@@ -1,7 +1,7 @@
 # orangeandcoffeeairlines
 Sistema de compra e venda de compra e reserva de passagens aéreas, integrado com meio de pagamento de sua escolha
 
-Papéis: Marco = PO, Elmon = SM, Marco + Elmon = Dev Team
+Papéis: Regina = PO, Elmon = SM, Marco + Elmon + Gleydson + Wladigley = Dev Team
 
 Cerimônias:
 1º Reunião de planning (kick-off) - pauta:
@@ -33,6 +33,13 @@ Experiência em grandes projetos de desenvolvimento noutras tecnologias e Marco 
 Fortalezas: disposição permanente para novos desafios e aprendizados, experiência em consultoria de TI, espírito de equipe
 
 Pontos de melhoria: pouca experiência em metodologias ágeis, gestão do tempo
+
+Sobre Gleydson:
+Graduado em Ciência da Computação pela Universidade Federal da Paraíba, com experiência de mais de 3 anos com .NET.
+
+Fortalezas: liderança, criatividade, diciplina, dedicado, flexível, adaptável
+
+Pontos de melhoria: pouca experiência com DevOps
 
 
 Desenvolvimento dos Seguintes Serviços
