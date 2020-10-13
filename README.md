@@ -34,9 +34,12 @@ Fortalezas: disposição permanente para novos desafios e aprendizados, experiê
 
 Pontos de melhoria: pouca experiência em metodologias ágeis, gestão do tempo
 
-Sobre Marco: Larga experiência em projetos comerciais, industriais no ramo de software bem como já desenvolveu em .Net
+Sobre Marco:
+Larga experiência em projetos comerciais, industriais no ramo de software bem como já desenvolveu em .Net
 
 Fortalezas: Flexibilidade, criatividade, resiliente, autodidata e espírito de equipe.
+
+Pontos de melhoria: Preciso de experiência em DevOps e Docker
 
 Sobre Gleydson:
 Graduado em Ciência da Computação pela Universidade Federal da Paraíba, com experiência de mais de 3 anos com .NET.
@@ -45,6 +48,14 @@ Fortalezas: liderança, criatividade, diciplina, dedicado, flexível, adaptável
 
 Pontos de melhoria: pouca experiência com DevOps
 
+Sobre Wladigley Simão (Digley):
+Graduado em analise e desenvolvimento de sistemas, entusiasta e estudioso de novas tecnologias e metódos.
+Principal expetise com a plataformas .net e Javascript com React.
+Bastante experiencia com sistemas comerciais e migração de tecnologias.
+
+Fortalezas: criativo, metódico, resiliente, compromissado, bastante estudioso, autruista e boa relação em equipe.
+
+Pontos de melhoria: Exercicio de Liderança, Acertividade em esforço de demandas e me aprimorar em tecnologias mobile.
 
 Desenvolvimento dos Seguintes Serviços
 - WebApplication MVC
