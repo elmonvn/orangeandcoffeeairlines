@@ -10,8 +10,8 @@ using OCAirLines.Database.Contexts;
 namespace OCAirLines.Database.Migrations
 {
     [DbContext(typeof(OCAirLinesDbContext))]
-    [Migration("20201013005830_inicial")]
-    partial class inicial
+    [Migration("20201013021853_campoSenhaTabelaUsuario")]
+    partial class campoSenhaTabelaUsuario
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -255,6 +255,10 @@ namespace OCAirLines.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pais")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sexo")
