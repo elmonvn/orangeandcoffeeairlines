@@ -21,7 +21,7 @@ namespace OCAirLines.Database.Contexts
         {
             JToken jAppSettings = JToken.Parse(File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "appsettings.json")));
 
-            string connection = jAppSettings["ConnectionStrings"]["ConexaoPadrao"].ToString();
+            string connection = jAppSettings["ConnectionStrings"]["DefaultConnection"].ToString();
             optionsBuilder.UseSqlServer(connection);
         }
 
@@ -79,7 +79,87 @@ namespace OCAirLines.Database.Contexts
                 .WithOne(x => x.Cartao)
                 .HasForeignKey(x => x.CartaoId);
             });
+
+
+            modelBuilder.Entity<Compra>(i =>
+            {
+                i.ToTable("Compras");
+                i.HasKey(x => x.Id);
+
+                
+
+                i.HasOne(x => x.Usuario)
+                .WithMany(x => x.Compras)
+                .HasForeignKey(x => x.UsuarioId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+                i.HasOne(x => x.Cartao)
+                .WithMany(x => x.Compras)
+                .HasForeignKey(x => x.CartaoId)
+                .OnDelete(DeleteBehavior.NoAction);
+                
+
+                i.HasMany(x => x.Itens)
+                .WithOne(x => x.Compra)
+                .HasForeignKey(x => x.CompraId);
+
+
+
+            });
+
+            modelBuilder.Entity<CompraItem>(i =>
+            {
+                i.ToTable("CompraItens");
+                i.HasKey(x => x.Id);
+
+             
+                i.Property(x => x.Empresa).IsRequired();
+                i.Property(x => x.Origem).IsRequired();
+                i.Property(x => x.Destino).IsRequired();
+                i.Property(x => x.Preco).HasColumnType("decimal(16,2)");
+
+                i.HasOne(x => x.Compra)
+                .WithMany(x => x.Itens)
+                .HasForeignKey(x => x.CompraId);
+            });
+
+            modelBuilder.Entity<Favorita>(i =>
+            {
+                i.ToTable("Favoritas");
+                i.HasKey(x => x.Id);
+
+                i.Property(x => x.Empresa).IsRequired();
+                i.Property(x => x.Origem).IsRequired();
+                i.Property(x => x.Destino).IsRequired();
+                i.Property(x => x.Preco).HasColumnType("decimal(16,2)");
+
+                i.HasOne(x => x.Usuario)
+                .WithMany(x => x.Favoritas)
+                .HasForeignKey(x => x.UsuarioId);
+
+
+            });
+
+            modelBuilder.Entity<Pesquisa>(i =>
+            {
+                i.ToTable("Pesquisas");
+                i.HasKey(x => x.Id);
+
+                i.Property(x => x.Empresa).IsRequired();
+                i.Property(x => x.Origem).IsRequired();
+                i.Property(x => x.Destino).IsRequired();
+                i.Property(x => x.Preco).HasColumnType("decimal(16,2)");
+
+                i.HasOne(x => x.Usuario)
+                .WithMany(x => x.Pesquisas)
+                .HasForeignKey(x => x.UsuarioId);
+
+            });
+
+
             #endregion
+
+
         }
     }
 }
