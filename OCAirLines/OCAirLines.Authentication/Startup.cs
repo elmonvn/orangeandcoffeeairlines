@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using OCAirLines.Authentication;
 
 namespace OCAirLines.Identity
@@ -50,7 +53,35 @@ namespace OCAirLines.Identity
                     ValidateAudience = false
                 };
             });
-                
+
+            //Swagger
+            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "OrangeAndCoffe - Authentication API",
+                    Description = "Web Api par Autenticação dos serviços.",
+                    TermsOfService = new Uri("https://github.com/elmonvn/orangeandcoffeeairlines"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "OrangeAndCoffe",
+                        Email = string.Empty,
+                        Url = new Uri("https://github.com/elmonvn/orangeandcoffeeairlines"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under LICX",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +91,14 @@ namespace OCAirLines.Identity
             {
                 app.UseDeveloperExceptionPage();
             }
+            //Swagger
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OrangeAndCoffe - Authentication API V1");
+                c.RoutePrefix = "swagger";
+            });
 
             app.UseHttpsRedirection();
 
@@ -71,6 +110,8 @@ namespace OCAirLines.Identity
             {
                 endpoints.MapControllers();
             });
+
+
         }
     }
 }

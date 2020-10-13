@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OCAirLines.Authentication</name>
+    </assembly>
+    <members>
+        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.GenerateToken(OCAirLines.Authentication.Model.AppAuth)">
+            <summary>
+            Gera um Novo token de acesso com base nas informacoes fornecidas
+            </summary>
+            <param name="appAuth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.RegisterApp(OCAirLines.Authentication.Model.AppAuth)">
+            <summary>
+            Registra um Novo App para consumir as Apis
+            </summary>
+            <param name="appAuth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.RevokeApp(System.Int32)">
+            <summary>
+            Revogar um App ja cadastrado
+            </summary>
+            <param name="appId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
