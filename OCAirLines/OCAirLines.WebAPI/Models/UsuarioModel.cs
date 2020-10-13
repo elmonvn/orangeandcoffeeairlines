@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace OCAirLines.Database.Models
+namespace OCAirLines.WebAPI.Models
 {
-    public class Usuario
+    public class UsuarioModel
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
         public string TpIdentificacao { get; set; }
@@ -21,10 +21,5 @@ namespace OCAirLines.Database.Models
         public string Telefone1 { get; set; }
         public string Telefone2 { get; set; }
         public bool Status { get; set; }
-
-        public ICollection<Cartao> Cartoes { get; set; }
-        public ICollection<Compra> Compras { get; set; }
-        public ICollection<Favorita> Favoritas { get; set; }
-        public ICollection<Pesquisa> Pesquisas { get; set; }
     }
 }

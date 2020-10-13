@@ -8,7 +8,7 @@ using OCAirLines.Database.Contexts;
 
 namespace OCAirLines.Database.Migrations
 {
-    [DbContext(typeof(OCAirLinesDbContexto))]
+    [DbContext(typeof(OCAirLinesDbContext))]
     partial class OCAirLinesDbContextoModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -253,6 +253,10 @@ namespace OCAirLines.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pais")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sexo")

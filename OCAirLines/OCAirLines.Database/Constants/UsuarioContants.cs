@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OCAirLines.Database.Constants
 {
-    public class UsuarioConstantes
+    public class UsuarioContants
     {
         /// <summary>
         /// CPF
