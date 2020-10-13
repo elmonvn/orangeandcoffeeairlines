@@ -8,7 +8,7 @@ using System.Text;
 
 namespace OCAirLines.Database.Contexts
 {
-    public class OCAirLinesDbContexto : DbContext
+    public class OCAirLinesDbContext : DbContext
     {
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Cartao> Cartoes { get; set; }
@@ -17,12 +17,9 @@ namespace OCAirLines.Database.Contexts
         public DbSet<Favorita> Favoritas { get; set; }
         public DbSet<Pesquisa> Pesquisas { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public OCAirLinesDbContext(DbContextOptions<OCAirLinesDbContext> options)
+            : base(options)
         {
-            JToken jAppSettings = JToken.Parse(File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "appsettings.json")));
-
-            string connection = jAppSettings["ConnectionStrings"]["ConexaoPadrao"].ToString();
-            optionsBuilder.UseSqlServer(connection);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,6 +39,7 @@ namespace OCAirLines.Database.Contexts
                 i.Property(x => x.TpIdentificacao).IsRequired();
                 i.Property(x => x.NrIdentificacao).IsRequired();
                 i.Property(x => x.Email).IsRequired();
+                i.Property(x => x.Senha).IsRequired();
                 i.Property(x => x.Telefone1).IsRequired();
 
                 i.HasMany(x => x.Cartoes)
@@ -78,6 +76,73 @@ namespace OCAirLines.Database.Contexts
                 i.HasMany(x => x.Compras)
                 .WithOne(x => x.Cartao)
                 .HasForeignKey(x => x.CartaoId);
+            });
+
+            modelBuilder.Entity<Favorita>(i =>
+            {
+                i.ToTable("Favoritas");
+                i.HasKey(x => x.Id);
+
+                i.Property(x => x.Empresa).IsRequired();
+                i.Property(x => x.Origem).IsRequired();
+                i.Property(x => x.Destino).IsRequired();
+                i.Property(x => x.Preco).HasColumnType("decimal(16,2)");
+
+                i.HasOne(x => x.Usuario)
+                .WithMany(x => x.Favoritas)
+                .HasForeignKey(x => x.UsuarioId);
+            });
+
+            modelBuilder.Entity<Pesquisa>(i =>
+            {
+                i.ToTable("Pesquisas");
+                i.HasKey(x => x.Id);
+
+                i.Property(x => x.Empresa).IsRequired();
+                i.Property(x => x.Origem).IsRequired();
+                i.Property(x => x.Destino).IsRequired();
+                i.Property(x => x.Preco).HasColumnType("decimal(16,2)");
+
+                i.HasOne(x => x.Usuario)
+                .WithMany(x => x.Pesquisas)
+                .HasForeignKey(x => x.UsuarioId);
+            });
+            #endregion
+
+            #region ~~ Compra ~~
+            modelBuilder.Entity<Compra>(i =>
+            {
+                i.ToTable("Compras");
+                i.HasKey(x => x.Id);
+
+                i.HasOne(x => x.Usuario)
+                .WithMany(x => x.Compras)
+                .HasForeignKey(x => x.UsuarioId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+                i.HasOne(x => x.Cartao)
+                .WithMany(x => x.Compras)
+                .HasForeignKey(x => x.CartaoId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+                i.HasMany(x => x.Itens)
+                .WithOne(x => x.Compra)
+                .HasForeignKey(x => x.CompraId);
+            });
+
+            modelBuilder.Entity<CompraItem>(i =>
+            {
+                i.ToTable("CompraItens");
+                i.HasKey(x => x.Id);
+
+                i.Property(x => x.Empresa).IsRequired();
+                i.Property(x => x.Origem).IsRequired();
+                i.Property(x => x.Destino).IsRequired();
+                i.Property(x => x.Preco).HasColumnType("decimal(16,2)");
+
+                i.HasOne(x => x.Compra)
+                .WithMany(x => x.Itens)
+                .HasForeignKey(x => x.CompraId);
             });
             #endregion
         }
