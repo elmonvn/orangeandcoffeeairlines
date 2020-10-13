@@ -18,15 +18,20 @@ namespace OCAirLines.Authentication.Services
             return result;
         }
 
-        public static bool RegisterAppAuth()
+        public static int RegisterAppAuth(AppAuth appAuth)
         {
             //Registrar App mo banco
-            return true;
+            var result = AppAuthRepository.RegisterNewApp(appAuth);
+
+            return result;
         }
-        public static bool RevokeAppAuth()
+        public static bool RevokeAppAuth(int appId)
         {
             //Revogar App mo banco
-            return true;
+            //Registrar App mo banco
+            var result = AppAuthRepository.RevokeApp(appId);
+
+            return result;
         }
     }
 }

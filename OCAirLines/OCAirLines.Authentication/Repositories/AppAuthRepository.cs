@@ -13,5 +13,15 @@ namespace OCAirLines.Authentication.Repositories
             var result =  new AppAuth { AppId = 1, Email = "Wladigley@gmail.com", AppRole = "OCUSUARIO",Name="Teste",Password="1234" };
             return result;
         }
+
+        internal static int RegisterNewApp(AppAuth appAuth)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static bool RevokeApp(int appId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
