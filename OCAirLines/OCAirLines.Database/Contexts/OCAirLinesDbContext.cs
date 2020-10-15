@@ -16,6 +16,7 @@ namespace OCAirLines.Database.Contexts
         public DbSet<CompraItem> CompraItens { get; set; }
         public DbSet<Favorita> Favoritas { get; set; }
         public DbSet<Pesquisa> Pesquisas { get; set; }
+        public DbSet<AppAuthentication> AppAuthentications { get; set; }
 
         public OCAirLinesDbContext(DbContextOptions<OCAirLinesDbContext> options)
             : base(options)
@@ -25,7 +26,9 @@ namespace OCAirLines.Database.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+           
+            #region ~~ Usuario feature ~~
+           
             #region ~~ Usuario ~~
             modelBuilder.Entity<Usuario>(i =>
             {
@@ -58,7 +61,9 @@ namespace OCAirLines.Database.Contexts
                 .WithOne(x => x.Usuario)
                 .HasForeignKey(x => x.UsuarioId);
             });
+            #endregion
 
+            #region ~~ Cartao ~~
             modelBuilder.Entity<Cartao>(i =>
             {
                 i.ToTable("Cartoes");
@@ -77,7 +82,9 @@ namespace OCAirLines.Database.Contexts
                 .WithOne(x => x.Cartao)
                 .HasForeignKey(x => x.CartaoId);
             });
-
+            #endregion
+           
+            #region ~~ Favorita ~~
             modelBuilder.Entity<Favorita>(i =>
             {
                 i.ToTable("Favoritas");
@@ -92,7 +99,9 @@ namespace OCAirLines.Database.Contexts
                 .WithMany(x => x.Favoritas)
                 .HasForeignKey(x => x.UsuarioId);
             });
-
+            #endregion
+            
+            #region ~~ Pesquisa ~~
             modelBuilder.Entity<Pesquisa>(i =>
             {
                 i.ToTable("Pesquisas");
@@ -108,7 +117,9 @@ namespace OCAirLines.Database.Contexts
                 .HasForeignKey(x => x.UsuarioId);
             });
             #endregion
-
+            
+            #endregion
+           
             #region ~~ Compra ~~
             modelBuilder.Entity<Compra>(i =>
             {
@@ -143,6 +154,19 @@ namespace OCAirLines.Database.Contexts
                 i.HasOne(x => x.Compra)
                 .WithMany(x => x.Itens)
                 .HasForeignKey(x => x.CompraId);
+            });
+            #endregion
+
+            #region ~~ AppAuthentication ~~
+            modelBuilder.Entity<AppAuthentication>(i =>
+            {
+                i.ToTable("AppAuthentications");
+                i.HasKey(x => x.Id);
+                i.Property(x => x.HashId).IsRequired();
+                i.HasIndex(x => x.Email).IsUnique();
+                i.Property(x => x.AppRole).IsRequired();
+                i.Property(x => x.Name).IsRequired();
+                i.Property(x => x.Password).IsRequired();
             });
             #endregion
         }

@@ -4,25 +4,32 @@
         <name>OCAirLines.Authentication</name>
     </assembly>
     <members>
-        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.GenerateToken(OCAirLines.Authentication.Model.AppAuth)">
+        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.GenerateToken(OCAirLines.Authentication.ViewModel.TokenAppViewModel)">
             <summary>
             Gera um Novo token de acesso com base nas informacoes fornecidas
             </summary>
-            <param name="appAuth"></param>
+            <param name="tokenModel"></param>
             <returns></returns>
         </member>
-        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.RegisterApp(OCAirLines.Authentication.Model.AppAuth)">
+        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.ConsultInfo(OCAirLines.Authentication.ViewModel.ResearchViewModel)">
+            <summary>
+            Consultar informações de cadastro
+            </summary>
+            <param name="researchModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.RegisterApp(OCAirLines.Authentication.ViewModel.RegisterAppViewModel)">
             <summary>
             Registra um Novo App para consumir as Apis
             </summary>
-            <param name="appAuth"></param>
+            <param name="registerModel"></param>
             <returns></returns>
         </member>
-        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.RevokeApp(System.Int32)">
+        <member name="M:OCAirLines.Authentication.Controllers.AuthenticationController.RevokeApp(OCAirLines.Authentication.ViewModel.RevokeViewModel)">
             <summary>
             Revogar um App ja cadastrado
             </summary>
-            <param name="appId"></param>
+            <param name="revokeModel"></param>
             <returns></returns>
         </member>
     </members>

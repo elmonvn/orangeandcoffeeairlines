@@ -19,7 +19,7 @@
 
       }
     },
-    "OCAirLines.Identity": {
+    "OCAirLines.Authentication": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

@@ -1,7 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using OCAirLines.Authentication.Model;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using OCAirLines.Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -12,10 +14,10 @@ namespace OCAirLines.Authentication.Services
 {
     public class TokenServices
     {
-        public static string Get(AppAuth appAuth)
+        public static string Get(AppAuthentication appAuth)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(SecretApi.key);// Secret Api Hash GENERATE BY https://www.grc.com/passwords.htm
+            var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("SECRET_KEY"));// Secret Api Hash GENERATE BY https://www.grc.com/passwords.htm
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(

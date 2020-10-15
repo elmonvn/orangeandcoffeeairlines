@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OCAirLines.Authentication.Model
+namespace OCAirLines.Authentication.ViewModel
 {
-    public class AppAuth
+    public class ResearchViewModel
     {
-        public int AppId { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
         public string Password { get; set; }
-        public string AppRole { get; set; }
+        public string HashId { get; set; }
     }
 }
