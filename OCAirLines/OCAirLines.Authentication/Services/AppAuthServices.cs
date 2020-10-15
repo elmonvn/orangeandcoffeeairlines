@@ -1,5 +1,8 @@
-﻿using OCAirLines.Authentication.Model;
-using OCAirLines.Authentication.Repositories;
+﻿using OCAirLines.Authentication.Repositories;
+using OCAirLines.Authentication.Repositories.Interfaces;
+using OCAirLines.Authentication.Services.Intefaces;
+using OCAirLines.Database.Helpers;
+using OCAirLines.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,31 +10,47 @@ using System.Threading.Tasks;
 
 namespace OCAirLines.Authentication.Services
 {
-    public class AppAuthServices
+    public class AppAuthServices: IAppAuthServices
     {
-        public static AppAuth AppInfoAuth(string appName, string passWord, int appId)
+        private readonly IAppAuthRepository appAuthRepository;
+        public AppAuthServices(IAppAuthRepository _appAuthRepository)
+        {
+            appAuthRepository = _appAuthRepository;
+        }
+
+        public async Task<QueryResult<AppAuthentication>> AppInfoAuth(string appName, string passWord, string hashId)
         {
             //recupera informações do App do banco
-            var result = AppAuthRepository.SelectById(appId);
-            if (passWord != result.Password || appName != result.Name)
-                return null;
-            return result;
+            var result = await appAuthRepository.SelecionarPorHashIdName(hashId, appName);
+            
+            if (passWord != result.Password || appName != result.Name && hashId != result.HashId)
+                return new QueryResult<AppAuthentication> { Succeeded = false };
+            result.Password = "****";
+            return new QueryResult<AppAuthentication> { Succeeded = true, Result = result }; ;
         }
 
-        public static int RegisterAppAuth(AppAuth appAuth)
+        public async Task<QueryResult<AppAuthentication>> RegistrarNovoApp(AppAuthentication appAuth)
         {
             //Registrar App mo banco
-            var result = AppAuthRepository.RegisterNewApp(appAuth);
+            if (appAuth.Password != appAuth.Password && appAuth.Name != appAuth.Name)
+                return new QueryResult<AppAuthentication> { Succeeded = false, Message = "Name e Password são obrigatórios, Verifique." };
 
-            return result;
+            appAuth.HashId = SecretApi.HashIdClient(appAuth.Name);
+            await appAuthRepository.RegistrarNovoApp(appAuth);
+            appAuth.Password = "****";
+            return new QueryResult<AppAuthentication>{ Succeeded = true, Result = appAuth, Message = "Registrado com sucesso!" };
         }
-        public static bool RevokeAppAuth(int appId)
+
+        public async Task<QueryResult<string>> RevogarApp(AppAuthentication appAuth)
         {
+            var result = await appAuthRepository.SelecionarPorHashIdName(appAuth.HashId, appAuth.Name);
+
+            if (appAuth.Password != result.Password || appAuth.Name != result.Name)
+                return new QueryResult<string> { Succeeded = false, Message = "Verifique suas credenciais." };
             //Revogar App mo banco
-            //Registrar App mo banco
-            var result = AppAuthRepository.RevokeApp(appId);
+            await appAuthRepository.RevogarApp(appAuth.HashId, appAuth.Name);
 
-            return result;
+            return new QueryResult<string>{Succeeded = true, Result = appAuth.Name, Message="Revogado com sucesso!" };
         }
     }
 }

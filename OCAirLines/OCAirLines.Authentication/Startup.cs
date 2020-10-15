@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,6 +11,18 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OCAirLines.Authentication;
+using OCAirLines.Authentication.Repositories;
+using OCAirLines.Authentication.Repositories.Interfaces;
+using OCAirLines.Authentication.Services;
+using OCAirLines.Authentication.Services.Intefaces;
+using OCAirLines.Database.Contexts;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OCAirLines.Identity
 {
@@ -34,9 +40,15 @@ namespace OCAirLines.Identity
         {
             services.AddControllers();
             services.AddCors();
+            //EF Core
+            services.AddDbContext<OCAirLinesDbContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IAppAuthRepository, AppAuthRepository>();
+            services.AddScoped<IAppAuthServices, AppAuthServices>();
 
             //JWT Auth
-            var key = Encoding.ASCII.GetBytes(SecretApi.key);// Secret Api Hash GENERATE BY https://www.grc.com/passwords.htm
+            
+            var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("SECRET_KEY"));// Secret Api Hash GENERATE BY https://www.grc.com/passwords.htm
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
