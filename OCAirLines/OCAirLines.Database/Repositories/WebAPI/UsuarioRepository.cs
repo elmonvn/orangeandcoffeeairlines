@@ -13,7 +13,7 @@ namespace OCAirLines.Database.Repositories.WebAPI
     {
         IQueryable<Usuario> Todos();
         Task<Usuario> BuscaPorIdAsync(int usuarioId);
-        Task<Usuario> ValidaEmialAsync(string email);
+        Task<Usuario> ValidaEmailAsync(string email);
     }
 
     public class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
@@ -28,8 +28,8 @@ namespace OCAirLines.Database.Repositories.WebAPI
 
         public IQueryable<Usuario> Todos() => _dataContext.Usuarios.AsQueryable();
 
-        public async Task<Usuario> BuscaPorIdAsync(int usuarioId) => await _dataContext.Usuarios.FindAsync(usuarioId);
+        public async  Task<Usuario> BuscaPorIdAsync(int usuarioId) => await _dataContext.Usuarios.FindAsync(usuarioId);
 
-        public async Task<Usuario> ValidaEmialAsync(string email) => await _dataContext.Usuarios.SingleOrDefaultAsync(x => x.Email.ToUpper() == email.ToUpper());
+        public async Task<Usuario> ValidaEmailAsync(string email) => await _dataContext.Usuarios.SingleOrDefaultAsync(x => x.Email.ToUpper() == email.ToUpper());
     }
 }
