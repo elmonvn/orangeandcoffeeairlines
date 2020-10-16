@@ -40,6 +40,7 @@ namespace OCAirLines.WebAPI.Services
 
                             var cartao = new Cartao
                             {
+                                UsuarioId = model.UsuarioId,
                                 Bandeira = model.Bandeira,
                                 Numero = model.Numero,
                                 CodSeguranca = model.CodSeguranca,
@@ -109,6 +110,7 @@ namespace OCAirLines.WebAPI.Services
                             if (!string.IsNullOrEmpty(model.Vencimento))
                             {
 
+                                cartao.UsuarioId = model.UsuarioId;
                                 cartao.Bandeira = model.Bandeira;
                                 cartao.Numero = model.Numero;
                                 cartao.CodSeguranca = model.CodSeguranca;

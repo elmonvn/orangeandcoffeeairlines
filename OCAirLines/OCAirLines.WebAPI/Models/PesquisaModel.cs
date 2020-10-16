@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace OCAirLines.Database.Models
+namespace OCAirLines.WebAPI.Models
 {
-    public class Favorita
+    public class PesquisaModel
     {
         public int Id { get; set; }
         public int UsuarioId { get; set; }
@@ -17,8 +18,7 @@ namespace OCAirLines.Database.Models
         public decimal Preco { get; set; }
         public DateTime DtSaida { get; set; }
         public DateTime DtChegada { get; set; }
-        public bool Status { get; set; }
 
-        public Usuario Usuario { get; set; }
+        
     }
 }
