@@ -22,7 +22,7 @@ namespace OCAirLines.WebAPI.Services
             _compraItemRepository = CompraItemRepository;
         }
 
-        public async Task<IList<CompraItem>> TodosPorUsuarioAsync(int compraId) => await _compraItemRepository.TodosPorCompra(compraId).ToListAsync();
+        public async Task<IList<CompraItem>> TodosPorCompraAsync(int compraId) => await _compraItemRepository.TodosPorCompra(compraId).ToListAsync();
 
         public async Task<CompraItem> BuscaPorId(int compraItemId) => await _compraItemRepository.BuscaPorIdAsync(compraItemId);
 
@@ -186,5 +186,7 @@ namespace OCAirLines.WebAPI.Services
                 };
             }
         }
+
+
     }
 }

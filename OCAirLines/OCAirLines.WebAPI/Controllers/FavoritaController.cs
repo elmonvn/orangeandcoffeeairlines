@@ -77,12 +77,12 @@ namespace OCAirLines.WebAPI.Controllers
         }
 
         // PUT api/<CartaoController>/5
-        [HttpPut("{pesquisaId}")]
-        public async Task<IActionResult> Put(int pesquisaId, [FromBody] PesquisaModel model)
+        [HttpPut("{favoritaId}")]
+        public async Task<IActionResult> Put(int favoritaId, [FromBody] PesquisaModel model)
         {
             try
             {
-                var result = await _pesquisaService.AtualizarPesquisaAsync(pesquisaId, model);
+                var result = await _pesquisaService.AtualizarPesquisaAsync(favoritaId, model);
                 if (result.Succeeded)
                     return Ok(result.Result);
                 else
@@ -96,12 +96,12 @@ namespace OCAirLines.WebAPI.Controllers
         }
 
         // DELETE api/<UsuarioController>/5
-        [HttpDelete("{pesquisaId}")]
-        public async Task<IActionResult> Delete(int pesquisaId)
+        [HttpDelete("{favoritaId}")]
+        public async Task<IActionResult> Delete(int favoritaId)
         {
             try
             {
-                var result = await _pesquisaService.DeletarPesquisaAsync(pesquisaId);
+                var result = await _pesquisaService.DeletarPesquisaAsync(favoritaId);
                 if (result.Succeeded)
                     return Ok(new { message = result.Message });
                 else

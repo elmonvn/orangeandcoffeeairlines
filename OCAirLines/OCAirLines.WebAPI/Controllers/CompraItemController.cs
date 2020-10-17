@@ -16,22 +16,22 @@ namespace OCAirLines.WebAPI.Controllers
     public class CompraItemController : ControllerBase
     {
         private readonly ILogger<CompraItemController> _logger;
-        private readonly IPesquisaService _pesquisaService;
+        private readonly ICompraItemService _compraItemService;
 
         public CompraItemController(ILogger<CompraItemController> logger,
-        IPesquisaService pesquisaService)
+        ICompraItemService compraItemService)
         {
             _logger = logger;
-            _pesquisaService = pesquisaService;
+            _compraItemService = compraItemService;
         }
 
         // GET: api/<CartaoController>
-        [HttpGet("{usuarioId}")]
-        public async Task<IActionResult> GetByUserId(int usuarioId)
+        [HttpGet("{compraId}")]
+        public async Task<IActionResult> GetByCompraId(int compraId)
         {
             try
             {
-                var result = await _pesquisaService.TodosPorUsuarioAsync(usuarioId);
+                var result = await _compraItemService.TodosPorCompraAsync(compraId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -46,7 +46,7 @@ namespace OCAirLines.WebAPI.Controllers
         {
             try
             {
-                var result = await _pesquisaService.BuscaPorId(compraItemId);
+                var result = await _compraItemService.BuscaPorId(compraItemId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -59,11 +59,11 @@ namespace OCAirLines.WebAPI.Controllers
 
         // GET: api/<CartaoController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] PesquisaModel model)
+        public async Task<IActionResult> Post([FromBody] CompraItemModel model)
         {
             try
             {
-                var result = await _pesquisaService.IncluirPesquisaAsync(model);
+                var result = await _compraItemService.IncluirCompraItemAsync(model);
                 if (result.Succeeded)
                     return Ok(result.Result);
                 else
@@ -77,12 +77,12 @@ namespace OCAirLines.WebAPI.Controllers
         }
 
         // PUT api/<CartaoController>/5
-        [HttpPut("{pesquisaId}")]
-        public async Task<IActionResult> Put(int pesquisaId, [FromBody] PesquisaModel model)
+        [HttpPut("{compraItemId}")]
+        public async Task<IActionResult> Put(int compraItemId, [FromBody] CompraItemModel model)
         {
             try
             {
-                var result = await _pesquisaService.AtualizarPesquisaAsync(pesquisaId, model);
+                var result = await _compraItemService.AtualizarCompraItemAsync(compraItemId, model);
                 if (result.Succeeded)
                     return Ok(result.Result);
                 else
@@ -96,12 +96,12 @@ namespace OCAirLines.WebAPI.Controllers
         }
 
         // DELETE api/<UsuarioController>/5
-        [HttpDelete("{pesquisaId}")]
-        public async Task<IActionResult> Delete(int pesquisaId)
+        [HttpDelete("{compraItemId}")]
+        public async Task<IActionResult> Delete(int compraItemId)
         {
             try
             {
-                var result = await _pesquisaService.DeletarPesquisaAsync(pesquisaId);
+                var result = await _compraItemService.DeletarCompraItemAsync(compraItemId);
                 if (result.Succeeded)
                     return Ok(new { message = result.Message });
                 else

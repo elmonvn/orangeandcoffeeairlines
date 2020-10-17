@@ -26,9 +26,9 @@ namespace OCAirLines.Database.Repositories.WebAPI
             _dataContext = dataContext;
         }
 
-        public IQueryable<CompraItem> TodosPorCompra(int compraId) => _dataContext.CompraItem.AsQueryable();
+        public IQueryable<CompraItem> TodosPorCompra(int compraId) => _dataContext.CompraItens.AsQueryable();
 
-        public async Task<CompraItem> BuscaPorIdAsync(int compraItemId) => await _dataContext.CompraItem.FindAsync(compraItemId);
+        public async Task<CompraItem> BuscaPorIdAsync(int compraItemId) => await _dataContext.CompraItens.FindAsync(compraItemId);
 
 
 
