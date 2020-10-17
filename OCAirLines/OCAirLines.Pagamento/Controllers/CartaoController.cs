@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OCAirLines.Pagamento.Interfaces;
@@ -28,11 +29,12 @@ namespace OCAirLines.Pagamento.Controllers
         // POST api/<CartaoController>
         [HttpPost]
         [Route("Pagar")]
-        public async Task<IActionResult> Post([FromHeader] string token, [FromBody] CartaoModel model)
+        [Authorize(Roles = "pagamentoapi")]
+        public async Task<IActionResult> Post([FromBody] CartaoModel model)
         {
             try
             {
-                var result = await _cartaoService.RegistrarPagamento(token, model);
+                var result = await _cartaoService.RegistrarPagamento(model);
                 if (result.Succeeded)
                     return Ok(result.Result);
                 else

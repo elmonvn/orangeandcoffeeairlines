@@ -22,7 +22,7 @@ namespace OCAirLines.Pagamento.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<QueryResult<bool>> StatusPagamentoAsync([FromHeader]string token, int usuarioId, int compraId)
+        public async Task<QueryResult<bool>> StatusPagamentoAsync(int usuarioId, int compraId)
         {
             var usuario = await _usuarioRepository.BuscaPorIdAsync(usuarioId);
             if (usuario != null)

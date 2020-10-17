@@ -9,6 +9,6 @@ namespace OCAirLines.Pagamento.Interfaces
 {
     public interface IPagamentoService
     {
-        Task<QueryResult<bool>> StatusPagamentoAsync([FromHeader]string token, int usuarioId, int compraId);
+        Task<QueryResult<bool>> StatusPagamentoAsync(int usuarioId, int compraId);
     }
 }

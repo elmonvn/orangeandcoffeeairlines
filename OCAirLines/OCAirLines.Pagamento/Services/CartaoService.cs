@@ -25,7 +25,7 @@ namespace OCAirLines.Pagamento.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<QueryResult<Compra>> RegistrarPagamento([FromHeader]string token, [FromForm]CartaoModel model)
+        public async Task<QueryResult<Compra>> RegistrarPagamento([FromForm]CartaoModel model)
         {
             var cartao = await _pagamentoRepository.BuscaCartaoPorIdAsync(model.CartaoId);
             if (cartao != null)
