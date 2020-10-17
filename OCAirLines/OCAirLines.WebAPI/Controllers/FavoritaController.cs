@@ -13,7 +13,7 @@ namespace OCAirLines.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FavoritaController : ControllerBase
+    public class FavoritaController : ControllerBase    
     {
         private readonly ILogger<FavoritaController> _logger;
         private readonly IPesquisaService _pesquisaService;
