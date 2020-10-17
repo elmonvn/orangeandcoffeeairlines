@@ -12,7 +12,7 @@ namespace OCAirLines.Database.Repositories.WebAPI
     public interface IPesquisaRepository : IRepository<Pesquisa>
     {
         IQueryable<Pesquisa> TodosPorUsuario(int UsuarioId);
-        Task<Pesquisa> BuscaPorIdAsync(int cartaoId);
+        Task<Pesquisa> BuscaPorIdAsync(int pesquisaId);
 
     }
 

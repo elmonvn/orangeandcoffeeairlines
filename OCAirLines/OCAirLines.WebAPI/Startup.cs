@@ -38,8 +38,12 @@ namespace OCAirLines.WebAPI
 
             //Add application services
             services.AddTransient<IUsuarioService, UsuarioService>();
-
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+
+            services.AddTransient<ICartaoService, CartaoService>();
+            services.AddTransient<ICartaoRepository, CartaoRepository>();
+
+           
 
             services.AddSwaggerGen(options => {
 

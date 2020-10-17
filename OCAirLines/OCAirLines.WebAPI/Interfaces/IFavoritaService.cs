@@ -14,7 +14,7 @@ namespace OCAirLines.WebAPI.Interfaces
         Task<IList<Favorita>> TodosPorUsuarioAsync(int UsuarioId);
         Task<Favorita> BuscaPorId(int pesquisaId);
         Task<QueryResult<Favorita>> IncluirFavoritaAsync([FromForm] FavoritaModel model);
-        Task<QueryResult<Favorita>> AtualizarFavoritaAsync(int pesquisaId, [FromBody] FavoritaModel model);
-        Task<QueryResult<Favorita>> DeletarFavoritaAsync(int pesquisaId);
+        Task<QueryResult<Favorita>> AtualizarFavoritaAsync(int favoritaId, [FromBody] FavoritaModel model);
+        Task<QueryResult<Favorita>> DeletarFavoritaAsync(int favoritaId);
     }
 }

@@ -13,12 +13,12 @@ namespace OCAirLines.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PesquisaController : ControllerBase
+    public class CompraItemController : ControllerBase
     {
-        private readonly ILogger<PesquisaController> _logger;
+        private readonly ILogger<CompraItemController> _logger;
         private readonly IPesquisaService _pesquisaService;
 
-        public PesquisaController(ILogger<PesquisaController> logger,
+        public CompraItemController(ILogger<CompraItemController> logger,
         IPesquisaService pesquisaService)
         {
             _logger = logger;
@@ -41,12 +41,12 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        [HttpGet("{pesquisaId}")]
-        public async Task<IActionResult> GetById(int pesquisaId)
+        [HttpGet("{compraItemId}")]
+        public async Task<IActionResult> GetById(int compraItemId)
         {
             try
             {
-                var result = await _pesquisaService.BuscaPorId(pesquisaId);
+                var result = await _pesquisaService.BuscaPorId(compraItemId);
                 return Ok(result);
             }
             catch (Exception ex)
