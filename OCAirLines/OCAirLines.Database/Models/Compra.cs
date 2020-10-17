@@ -10,7 +10,7 @@ namespace OCAirLines.Database.Models
         public int UsuarioId { get; set; }
         public int CartaoId { get; set; }
         public DateTime DtCompra { get; set; }
-        public int QtdParcela { get; set; }
+        public int QtdParcela { get; set; } 
         public bool Status { get; set; }
 
         public Usuario Usuario { get; set; }
