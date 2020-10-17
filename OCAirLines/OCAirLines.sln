@@ -6,12 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCAirLines.Identity", "OCAirLines.Identity\OCAirLines.Identity.csproj", "{1023CBB9-87DC-475C-B431-271F7767A1DB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCAirLines.Pagamento", "OCAirLines.Pagamento\OCAirLines.Pagamento.csproj", "{92C10E08-A31E-4D39-A8A8-987D3D7EFFEC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{149456E1-50B8-4DA3-BA2A-199B820F1AFB} = {149456E1-50B8-4DA3-BA2A-199B820F1AFB}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCAirLines.Passagem", "OCAirLines.Passagem\OCAirLines.Passagem.csproj", "{F251CCF2-32FB-4F69-8BEA-85E2E5385CDA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCAirLines.Database", "OCAirLines.Database\OCAirLines.Database.csproj", "{149456E1-50B8-4DA3-BA2A-199B820F1AFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCAirLines.WebAPI", "OCAirLines.WebAPI\OCAirLines.WebAPI.csproj", "{6986B87E-538C-4A1B-8BC2-25EA99E153CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OCAirLines.WebAPI", "OCAirLines.WebAPI\OCAirLines.WebAPI.csproj", "{6986B87E-538C-4A1B-8BC2-25EA99E153CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
