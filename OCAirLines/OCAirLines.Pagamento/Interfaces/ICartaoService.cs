@@ -11,7 +11,6 @@ namespace OCAirLines.Pagamento.Interfaces
 {
     public interface ICartaoService
     {
-        string GeraToken();
         Task<QueryResult<Compra>> RegistrarPagamento([FromHeader] string token, [FromForm] CartaoModel model);
     }
 }

@@ -39,6 +39,7 @@ namespace OCAirLines.Pagamento
 
             //Add application services
             services.AddTransient<ICartaoService, CartaoService>();
+            services.AddTransient<IPagamentoService, PagamentoService>();
 
             services.AddTransient<IPagamentoRepository, PagamentoRopository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();

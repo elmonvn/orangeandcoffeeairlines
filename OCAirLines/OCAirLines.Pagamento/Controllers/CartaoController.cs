@@ -25,20 +25,9 @@ namespace OCAirLines.Pagamento.Controllers
             _cartaoService = cartaoService;
         }
 
-        // GET: api/<CartaoController>
-        [HttpGet, ActionName("GeraToken")]
-        [Route("GetToken")]
-        public string Get() => _cartaoService.GeraToken();
-
-        //// GET api/<CartaoController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
         // POST api/<CartaoController>
         [HttpPost]
+        [Route("Pagar")]
         public async Task<IActionResult> Post([FromHeader] string token, [FromBody] CartaoModel model)
         {
             try
@@ -55,17 +44,5 @@ namespace OCAirLines.Pagamento.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
-
-        //// PUT api/<CartaoController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<CartaoController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

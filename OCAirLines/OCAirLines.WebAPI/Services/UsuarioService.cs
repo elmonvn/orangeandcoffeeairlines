@@ -38,7 +38,7 @@ namespace OCAirLines.WebAPI.Services
                         {
                             if (!string.IsNullOrEmpty(model.Email))
                             {
-                                var emailValidado = await _usuarioRepository.ValidaEmialAsync(model.Email);
+                                var emailValidado = await _usuarioRepository.ValidaEmailAsync(model.Email);
                                 if (emailValidado == null)
                                 {
                                     if (!string.IsNullOrEmpty(model.Senha))
@@ -160,7 +160,7 @@ namespace OCAirLines.WebAPI.Services
                             {
                                 if (!string.IsNullOrEmpty(model.Email))
                                 {
-                                    var emailValidado = await _usuarioRepository.ValidaEmialAsync(model.Email);
+                                    var emailValidado = await _usuarioRepository.ValidaEmailAsync(model.Email);
                                     if (emailValidado == null || (emailValidado != null && emailValidado.Id == usuarioId))
                                     {
                                         if (!string.IsNullOrEmpty(model.Senha))

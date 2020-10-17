@@ -15,9 +15,44 @@ namespace OCAirLines.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("OCAirLines.Database.Models.AppAuthentication", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("HashId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.ToTable("AppAuthentications");
+                });
 
             modelBuilder.Entity("OCAirLines.Database.Models.Cartao", b =>
                 {
@@ -126,6 +161,9 @@ namespace OCAirLines.Database.Migrations
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(16,2)");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompraId");
@@ -169,6 +207,9 @@ namespace OCAirLines.Database.Migrations
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(16,2)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
@@ -216,6 +257,9 @@ namespace OCAirLines.Database.Migrations
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(16,2)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");

@@ -17,6 +17,7 @@ namespace OCAirLines.Database.Models
         public decimal Preco { get; set; }
         public DateTime DtSaida { get; set; }
         public DateTime DtChegada { get; set; }
+        public bool Status { get; set; }
 
         public Usuario Usuario { get; set; }
     }

@@ -11,6 +11,7 @@ namespace OCAirLines.Database.Repositories.Pagamento
     public interface IPagamentoRepository : IRepository<Cartao>
     {
         Task<Cartao> BuscaCartaoPorIdAsync(int cartaoId);
+        Task<Compra> BuscaCompraPorIdAsycn(int compraId);
     }
 
     public class PagamentoRopository : Repository<Cartao>, IPagamentoRepository
@@ -26,5 +27,9 @@ namespace OCAirLines.Database.Repositories.Pagamento
         public async Task<Cartao> BuscaCartaoPorIdAsync(int cartaoId) => await _dataContext.Cartoes
             .Include(x => x.Usuario)
             .SingleOrDefaultAsync(x => x.Id == cartaoId);
+
+        public async Task<Compra> BuscaCompraPorIdAsycn(int compraId) => await _dataContext.Compras
+            .Include(x => x.Itens)
+            .SingleOrDefaultAsync(x => x.Id == compraId);
     }
 }

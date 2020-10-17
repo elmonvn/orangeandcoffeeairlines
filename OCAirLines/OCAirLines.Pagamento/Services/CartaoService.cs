@@ -25,17 +25,12 @@ namespace OCAirLines.Pagamento.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public string GeraToken()
-        {
-            return "13rb3-2bd7g-don38-2dh03-fhsid";
-        }
-
         public async Task<QueryResult<Compra>> RegistrarPagamento([FromHeader]string token, [FromForm]CartaoModel model)
         {
             var cartao = await _pagamentoRepository.BuscaCartaoPorIdAsync(model.CartaoId);
             if (cartao != null)
             {
-                var usuario = _usuarioRepository.BuscaPorIdAsync(model.UsuarioId);
+                var usuario = await _usuarioRepository.BuscaPorIdAsync(model.UsuarioId);
                 if (usuario != null)
                 {
                     if (cartao.UsuarioId == usuario.Id)
@@ -98,7 +93,7 @@ namespace OCAirLines.Pagamento.Services
                         return new QueryResult<Compra>
                         {
                             Succeeded = false,
-                            Message = "Esté cartão não pertence a esse usário!"
+                            Message = "Esse cartão não pertence a esse usário!"
                         };
                     }
                 }
