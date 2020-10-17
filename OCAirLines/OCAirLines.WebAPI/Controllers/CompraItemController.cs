@@ -13,41 +13,25 @@ namespace OCAirLines.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompraController : ControllerBase
+    public class CompraItemController : ControllerBase
     {
-        private readonly ILogger<CompraController> _logger;
-        private readonly ICompraService _compraService;
+        private readonly ILogger<CompraItemController> _logger;
+        private readonly ICompraItemService _compraItemService;
 
-        public CompraController(ILogger<CompraController> logger,
-            ICompraService compraService)
+        public CompraItemController(ILogger<CompraItemController> logger,
+        ICompraItemService compraItemService)
         {
             _logger = logger;
-            _compraService = compraService;
+            _compraItemService = compraItemService;
         }
 
-        // GET: api/<CompraController>
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            try
-            {
-                var result = await _compraService.TodosAsync();
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Erro: {ex.Message}");
-                return BadRequest($"Erro: {ex.Message}");
-            }
-        }
-
-        // GET api/<CompraController>/5
+        // GET: api/<CartaoController>
         [HttpGet("{compraId}")]
-        public async Task<IActionResult> Get(int compraId)
+        public async Task<IActionResult> GetByCompraId(int compraId)
         {
             try
             {
-                var result = await _compraService.BuscaPorId(compraId);
+                var result = await _compraItemService.TodosPorCompraAsync(compraId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -57,13 +41,29 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        // POST api/<CompraController>
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CompraModel model)
+        [HttpGet("{compraItemId}")]
+        public async Task<IActionResult> GetById(int compraItemId)
         {
             try
             {
-                var result = await _compraService.IncluirCompraAsync(model);
+                var result = await _compraItemService.BuscaPorId(compraItemId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Erro: {ex.Message}");
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
+
+
+        // GET: api/<CartaoController>
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CompraItemModel model)
+        {
+            try
+            {
+                var result = await _compraItemService.IncluirCompraItemAsync(model);
                 if (result.Succeeded)
                     return Ok(result.Result);
                 else
@@ -76,13 +76,13 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        // PUT api/<CompraController>/5
-        [HttpPut("{compraId}")]
-        public async Task<IActionResult> Put(int compraId, [FromBody] CompraModel model)
+        // PUT api/<CartaoController>/5
+        [HttpPut("{compraItemId}")]
+        public async Task<IActionResult> Put(int compraItemId, [FromBody] CompraItemModel model)
         {
             try
             {
-                var result = await _compraService.AtualizarCompraAsync(compraId, model);
+                var result = await _compraItemService.AtualizarCompraItemAsync(compraItemId, model);
                 if (result.Succeeded)
                     return Ok(result.Result);
                 else
@@ -95,13 +95,13 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        // DELETE api/<CompraController>/5
-        [HttpDelete("{compraId}")]
-        public async Task<IActionResult> Delete(int compraId)
+        // DELETE api/<UsuarioController>/5
+        [HttpDelete("{compraItemId}")]
+        public async Task<IActionResult> Delete(int compraItemId)
         {
             try
             {
-                var result = await _compraService.DeletarCompraAsync(compraId);
+                var result = await _compraItemService.DeletarCompraItemAsync(compraItemId);
                 if (result.Succeeded)
                     return Ok(new { message = result.Message });
                 else
@@ -113,5 +113,8 @@ namespace OCAirLines.WebAPI.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
+
     }
 }
+
+

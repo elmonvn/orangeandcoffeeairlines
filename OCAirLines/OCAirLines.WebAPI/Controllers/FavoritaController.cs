@@ -13,25 +13,25 @@ namespace OCAirLines.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompraController : ControllerBase
+    public class FavoritaController : ControllerBase    
     {
-        private readonly ILogger<CompraController> _logger;
-        private readonly ICompraService _compraService;
+        private readonly ILogger<FavoritaController> _logger;
+        private readonly IPesquisaService _pesquisaService;
 
-        public CompraController(ILogger<CompraController> logger,
-            ICompraService compraService)
+        public FavoritaController(ILogger<FavoritaController> logger,
+        IPesquisaService pesquisaService)
         {
             _logger = logger;
-            _compraService = compraService;
+            _pesquisaService = pesquisaService;
         }
 
-        // GET: api/<CompraController>
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        // GET: api/<CartaoController>
+        [HttpGet("{usuarioId}")]
+        public async Task<IActionResult> GetByUserId(int usuarioId)
         {
             try
             {
-                var result = await _compraService.TodosAsync();
+                var result = await _pesquisaService.TodosPorUsuarioAsync(usuarioId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,13 +41,12 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        // GET api/<CompraController>/5
-        [HttpGet("{compraId}")]
-        public async Task<IActionResult> Get(int compraId)
+        [HttpGet("{favoritaId}")]
+        public async Task<IActionResult> GetById(int favoritaId)
         {
             try
             {
-                var result = await _compraService.BuscaPorId(compraId);
+                var result = await _pesquisaService.BuscaPorId(favoritaId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -57,13 +56,14 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        // POST api/<CompraController>
+
+        // GET: api/<CartaoController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CompraModel model)
+        public async Task<IActionResult> Post([FromBody] PesquisaModel model)
         {
             try
             {
-                var result = await _compraService.IncluirCompraAsync(model);
+                var result = await _pesquisaService.IncluirPesquisaAsync(model);
                 if (result.Succeeded)
                     return Ok(result.Result);
                 else
@@ -76,13 +76,13 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        // PUT api/<CompraController>/5
-        [HttpPut("{compraId}")]
-        public async Task<IActionResult> Put(int compraId, [FromBody] CompraModel model)
+        // PUT api/<CartaoController>/5
+        [HttpPut("{favoritaId}")]
+        public async Task<IActionResult> Put(int favoritaId, [FromBody] PesquisaModel model)
         {
             try
             {
-                var result = await _compraService.AtualizarCompraAsync(compraId, model);
+                var result = await _pesquisaService.AtualizarPesquisaAsync(favoritaId, model);
                 if (result.Succeeded)
                     return Ok(result.Result);
                 else
@@ -95,13 +95,13 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        // DELETE api/<CompraController>/5
-        [HttpDelete("{compraId}")]
-        public async Task<IActionResult> Delete(int compraId)
+        // DELETE api/<UsuarioController>/5
+        [HttpDelete("{favoritaId}")]
+        public async Task<IActionResult> Delete(int favoritaId)
         {
             try
             {
-                var result = await _compraService.DeletarCompraAsync(compraId);
+                var result = await _pesquisaService.DeletarPesquisaAsync(favoritaId);
                 if (result.Succeeded)
                     return Ok(new { message = result.Message });
                 else
@@ -113,5 +113,8 @@ namespace OCAirLines.WebAPI.Controllers
                 return BadRequest($"Erro: {ex.Message}");
             }
         }
+
     }
 }
+
+

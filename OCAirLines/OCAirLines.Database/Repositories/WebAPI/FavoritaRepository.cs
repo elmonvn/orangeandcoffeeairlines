@@ -12,7 +12,7 @@ namespace OCAirLines.Database.Repositories.WebAPI
     public interface IFavoritaRepository : IRepository<Favorita>
     {
         IQueryable<Favorita> TodosPorUsuario(int UsuarioId);
-        Task<Favorita> BuscaPorIdAsync(int cartaoId);
+        Task<Favorita> BuscaPorIdAsync(int favoritaId);
 
     }
 
@@ -28,6 +28,6 @@ namespace OCAirLines.Database.Repositories.WebAPI
 
         public IQueryable<Favorita> TodosPorUsuario(int usuarioId) => _dataContext.Favoritas.AsQueryable();
 
-        public async Task<Favorita> BuscaPorIdAsync(int pesquisaId) => await _dataContext.Favoritas.FindAsync(pesquisaId);
+        public async Task<Favorita> BuscaPorIdAsync(int favoritaId) => await _dataContext.Favoritas.FindAsync(favoritaId);
     }
 }
