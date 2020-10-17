@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OCAirLines.Passagem</name>
+    </assembly>
+    <members>
+        <member name="M:OCAirLines.Passagem.Controllers.Passagem.BuscarPor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Passagens
+            </summary>
+            <param name="filtro"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

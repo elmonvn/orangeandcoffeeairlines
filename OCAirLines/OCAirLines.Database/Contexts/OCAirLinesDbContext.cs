@@ -17,6 +17,8 @@ namespace OCAirLines.Database.Contexts
         public DbSet<Favorita> Favoritas { get; set; }
         public DbSet<Pesquisa> Pesquisas { get; set; }
         public DbSet<AppAuthentication> AppAuthentications { get; set; }
+        public DbSet<Passagem> Passagens { get; set; }
+
 
         public OCAirLinesDbContext(DbContextOptions<OCAirLinesDbContext> options)
             : base(options)
@@ -167,6 +169,23 @@ namespace OCAirLines.Database.Contexts
                 i.Property(x => x.AppRole).IsRequired();
                 i.Property(x => x.Name).IsRequired();
                 i.Property(x => x.Password).IsRequired();
+            });
+            #endregion
+
+            #region ~~ Passagens ~~
+            modelBuilder.Entity<Passagem>(i =>
+            {
+                i.ToTable("Passagens");
+                i.HasKey(x => x.Id);
+                i.Property(x => x.Companhia).IsRequired();
+                i.Property(x => x.LocalOrigem).IsRequired();
+                i.Property(x => x.LocalDestino).IsRequired();
+                i.Property(x => x.Preco).IsRequired();
+                i.Property(x => x.Classificacao).IsRequired();
+                i.Property(x => x.TipoCabine).IsRequired();
+                i.Property(x => x.DuracaoViagem).IsRequired();
+                i.Property(x => x.DataOrigem).IsRequired();
+                i.Property(x => x.DataDestino).IsRequired();
             });
             #endregion
         }

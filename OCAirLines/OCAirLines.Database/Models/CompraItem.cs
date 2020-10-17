@@ -18,9 +18,6 @@ namespace OCAirLines.Database.Models
         public DateTime DtSaida { get; set; }
         public DateTime DtChegada { get; set; }
         public bool Status { get; set; }
-
-
-
         public Compra Compra { get; set; }
     }
 }
