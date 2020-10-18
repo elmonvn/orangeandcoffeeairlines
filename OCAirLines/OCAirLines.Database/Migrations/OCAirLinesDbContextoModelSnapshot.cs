@@ -15,7 +15,7 @@ namespace OCAirLines.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -161,6 +161,9 @@ namespace OCAirLines.Database.Migrations
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(16,2)");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompraId");
@@ -204,6 +207,9 @@ namespace OCAirLines.Database.Migrations
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(16,2)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");
@@ -251,6 +257,9 @@ namespace OCAirLines.Database.Migrations
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(16,2)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<int>("UsuarioId")
                         .HasColumnType("int");

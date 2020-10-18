@@ -15,10 +15,10 @@ namespace OCAirLines.WebAPI.Controllers
     [ApiController]
     public class PesquisaController : ControllerBase
     {
-        private readonly ILogger<CartaoController> _logger;
+        private readonly ILogger<PesquisaController> _logger;
         private readonly IPesquisaService _pesquisaService;
 
-        public PesquisaController(ILogger<CartaoController> logger,
+        public PesquisaController(ILogger<PesquisaController> logger,
         IPesquisaService pesquisaService)
         {
             _logger = logger;
@@ -41,12 +41,12 @@ namespace OCAirLines.WebAPI.Controllers
             }
         }
 
-        [HttpGet("{cartaoId}")]
-        public async Task<IActionResult> GetById(int cartaoId)
+        [HttpGet("{pesquisaId}")]
+        public async Task<IActionResult> GetById(int pesquisaId)
         {
             try
             {
-                var result = await _pesquisaService.BuscaPorId(cartaoId);
+                var result = await _pesquisaService.BuscaPorId(pesquisaId);
                 return Ok(result);
             }
             catch (Exception ex)

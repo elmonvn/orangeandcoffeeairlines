@@ -16,7 +16,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "SECRET_KEY": "zDitYaGzwEa2R4IQZwbJjJGumbXQ8NWj3FmR47TciEA7PhfuMJ8uQtfwpWQuFeP"
-
       }
     },
     "OCAirLines.Authentication": {
