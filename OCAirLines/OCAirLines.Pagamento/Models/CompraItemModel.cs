@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace OCAirLines.Database.Models
+namespace OCAirLines.Pagamento.Models
 {
-    public class CompraItem
+    public class CompraItemModel
     {
-        public int Id { get; set; }
-        public int CompraId { get; set; }
         public int EmpresaId { get; set; }
         public string Empresa { get; set; }
         public int OrigemId { get; set; }
@@ -17,8 +16,5 @@ namespace OCAirLines.Database.Models
         public decimal Preco { get; set; }
         public DateTime DtSaida { get; set; }
         public DateTime DtChegada { get; set; }
-        public bool Status { get; set; }
-
-        public Compra Compra { get; set; }
     }
 }

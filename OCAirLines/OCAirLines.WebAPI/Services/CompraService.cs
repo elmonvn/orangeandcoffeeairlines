@@ -1,10 +1,10 @@
+﻿using OCAirLines.WebAPI.Interfaces;
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OCAirLines.Database.Contexts;
 using OCAirLines.Database.Helpers;
 using OCAirLines.Database.Models;
 using OCAirLines.Database.Repositories.WebAPI;
-using OCAirLines.WebAPI.Interfaces;
 using OCAirLines.WebAPI.Models;
 using System;
 using System.Collections.Generic;

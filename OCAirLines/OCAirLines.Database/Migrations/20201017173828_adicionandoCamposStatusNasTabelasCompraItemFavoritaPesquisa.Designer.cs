@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OCAirLines.Database.Contexts;
 
 namespace OCAirLines.Database.Migrations
 {
     [DbContext(typeof(OCAirLinesDbContext))]
-    partial class OCAirLinesDbContextoModelSnapshot : ModelSnapshot
+    [Migration("20201017173828_adicionandoCamposStatusNasTabelasCompraItemFavoritaPesquisa")]
+    partial class adicionandoCamposStatusNasTabelasCompraItemFavoritaPesquisa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

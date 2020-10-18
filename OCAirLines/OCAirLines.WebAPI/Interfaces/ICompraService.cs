@@ -1,8 +1,8 @@
+﻿using System;
 ﻿using Microsoft.AspNetCore.Mvc;
 using OCAirLines.Database.Helpers;
 using OCAirLines.Database.Models;
 using OCAirLines.WebAPI.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
