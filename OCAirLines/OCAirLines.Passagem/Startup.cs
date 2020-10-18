@@ -41,7 +41,7 @@ namespace OCAirLines.Passagem
                     TermsOfService = new Uri("https://github.com/elmonvn/orangeandcoffeeairlines"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Passagem",
+                        Name = "OrangeAndCoffe",
                         Email = string.Empty,
                         Url = new Uri("https://github.com/elmonvn/orangeandcoffeeairlines"),
                     },

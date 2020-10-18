@@ -177,15 +177,15 @@ namespace OCAirLines.Database.Contexts
             {
                 i.ToTable("Passagens");
                 i.HasKey(x => x.Id);
-                i.Property(x => x.Companhia).IsRequired();
-                i.Property(x => x.LocalOrigem).IsRequired();
-                i.Property(x => x.LocalDestino).IsRequired();
-                i.Property(x => x.Preco).IsRequired();
-                i.Property(x => x.Classificacao).IsRequired();
-                i.Property(x => x.TipoCabine).IsRequired();
                 i.Property(x => x.DuracaoViagem).IsRequired();
-                i.Property(x => x.DataOrigem).IsRequired();
+                i.Property(x => x.LocalOrigem).IsRequired();
                 i.Property(x => x.DataDestino).IsRequired();
+                i.Property(x => x.DataOrigem).IsRequired();
+                i.Property(x => x.Companhia).IsRequired();
+                i.Property(x => x.Preco).IsRequired();
+                i.Property(x => x.LocalDestino);
+                i.Property(x => x.Classificacao);
+                i.Property(x => x.TipoCabine);
             });
             #endregion
         }

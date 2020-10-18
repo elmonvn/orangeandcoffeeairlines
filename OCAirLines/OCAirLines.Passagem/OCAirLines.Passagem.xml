@@ -4,9 +4,11 @@
         <name>OCAirLines.Passagem</name>
     </assembly>
     <members>
-        <member name="M:OCAirLines.Passagem.Controllers.Passagem.BuscarPor(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:OCAirLines.Passagem.Controllers.Passagem.BuscarPor(System.String)">
             <summary>
-            Passagens
+            Opção 01 - text
+            Opção 02 - text
+            Opção 03 - text
             </summary>
             <param name="filtro"></param>
             <returns></returns>

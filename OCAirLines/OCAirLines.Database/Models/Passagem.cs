@@ -13,7 +13,7 @@ namespace OCAirLines.Database.Models
         public decimal Preco { get; set; }
         public string Classificacao { get; set; }
         public string TipoCabine { get; set; }
-        public DateTime DuracaoViagem { get; set; }
+        public string DuracaoViagem { get; set; }
         public DateTime DataOrigem { get; set; }
         public DateTime DataDestino { get; set; }
     }
