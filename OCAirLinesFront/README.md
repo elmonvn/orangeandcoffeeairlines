@@ -1,27 +1,27 @@
 # OCAirLinesFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
+Este projeto foi criado com [Angular CLI](https://github.com/angular/angular-cli) versão 10.1.6 e [Angular Material](https://material.angular.io/).
 
-## Development server
+## Servidor de desenvolvimento
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Executar `ng serve` para uma instância de servidor de desenvolvimento. Acessar `http://localhost:4200/`. O app será recarregado automaticamente se houver mudanças no código-fonte.
 
-## Code scaffolding
+## *Code scaffolding*
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Executar `ng generate component component-name` para gerar um novo componente. Também é possível usar `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Executar `ng build` para fazer o _build_ do projeto. O _build artifact_ será armazenado no diretório `dist/`. Utilizar a _flag_ `--prod` para um _build_ de produção.
 
-## Running unit tests
+## Executando testes unitários
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Executar `ng test` para realizar os testes unitários via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Executando testes _end-to-end_
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Executar `ng e2e` para realizar os testes _end-to-end_ via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Mais informações
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Para mais informações sobre o Angular CLI, utilizar `ng help` ou consultar [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
