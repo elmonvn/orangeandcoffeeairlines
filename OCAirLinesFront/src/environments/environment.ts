@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:5000'
+  urlWebApi: 'https://localhost:5001/api',
+  urlAuth: 'https://localhost:5011/api',
+  urlPayment: 'https://localhost:5021/api',
+  urlTicket: 'https://localhost:5031/api'
 };
 
 /*

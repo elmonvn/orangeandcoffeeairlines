@@ -7,7 +7,7 @@ Cerimônias:
 1º Reunião de planning (kick-off) - pauta:
   - elaboração do PRoduct Backlog: participantes, PO, SM, Dev Team
   - decidida duração de sprints de 1 semana útil (5 dias)
-  
+
 Sprint 1: 5 a 9/10/2020
   - sprint planning: resultado = sprint 1 backlog 5/10
   - implementação da sprint 5 a 9/10
@@ -68,17 +68,9 @@ Desenvolvimento dos Seguintes Serviços
 - Api Identity Autenticação
   Gerenciar Autenticação de acessos
 
+## Back-end
 
+[Detalhes](OCAirlines/README.md)
 
-
-
-
-
-
-
-
-
-
-
-
-
+## Front-end
+[Detalhes](OCAirlinesFront/README.md)

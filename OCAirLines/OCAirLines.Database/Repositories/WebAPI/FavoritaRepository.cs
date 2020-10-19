@@ -16,7 +16,7 @@ namespace OCAirLines.Database.Repositories.WebAPI
 
     }
 
-    public class FavoritaRepository : Repository<Favorita>
+    public class FavoritaRepository : Repository<Favorita>, IFavoritaRepository
     {
         private readonly OCAirLinesDbContext _dataContext;
 

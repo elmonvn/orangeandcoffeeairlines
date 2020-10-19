@@ -18,7 +18,5 @@ namespace OCAirLines.WebAPI.Models
         public decimal Preco { get; set; }
         public DateTime DtSaida { get; set; }
         public DateTime DtChegada { get; set; }
-
-        
     }
 }

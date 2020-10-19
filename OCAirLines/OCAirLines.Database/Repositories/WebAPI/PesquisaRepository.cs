@@ -16,7 +16,7 @@ namespace OCAirLines.Database.Repositories.WebAPI
 
     }
 
-    public class PesquisaRepository : Repository<Pesquisa>
+    public class PesquisaRepository : Repository<Pesquisa>, IPesquisaRepository
     {
         private readonly OCAirLinesDbContext _dataContext;
 

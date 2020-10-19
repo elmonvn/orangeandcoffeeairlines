@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OCAirLines.WebAPI.Interfaces;
@@ -13,6 +14,7 @@ namespace OCAirLines.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "webapi")]
     public class FavoritaController : ControllerBase    
     {
         private readonly ILogger<FavoritaController> _logger;
@@ -26,7 +28,7 @@ namespace OCAirLines.WebAPI.Controllers
         }
 
         // GET: api/<CartaoController>
-        [HttpGet("{usuarioId}")]
+        [HttpGet("BuscarPorUsuario/{usuarioId}")]
         public async Task<IActionResult> GetByUserId(int usuarioId)
         {
             try
@@ -42,7 +44,7 @@ namespace OCAirLines.WebAPI.Controllers
         }
 
         [HttpGet("{favoritaId}")]
-        public async Task<IActionResult> GetById(int favoritaId)
+        public async Task<IActionResult> Get(int favoritaId)
         {
             try
             {
