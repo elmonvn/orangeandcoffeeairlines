@@ -98,4 +98,3 @@ Cerimônias acompanhadas no AzureDevops:
 **TecNologias empregadas:**
 * Angular
 * MaterialUI
-
