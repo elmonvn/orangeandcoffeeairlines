@@ -1,0 +1,38 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:53671",
+      "sslPort": 0
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SKYSCANNER_URL": "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices",
+        "SKYSCANNER_API_HOST": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+        "SKYSCANNER_API_KEY": "505a08782emshf600d4645df7d16p196c75jsnc38df934880a",
+        "SKYSCANNER_QUERYSTRING": "true"
+      }
+    },
+    "OCAirLines.Passagem": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:5031;http://localhost:5030",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+	"SKYSCANNER_URL": "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices",
+        "SKYSCANNER_API_HOST": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+        "SKYSCANNER_API_KEY": "505a08782emshf600d4645df7d16p196c75jsnc38df934880a",
+        "SKYSCANNER_QUERYSTRING": "true"
+      }
+    }
+  }
+}
