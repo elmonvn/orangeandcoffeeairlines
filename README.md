@@ -98,3 +98,12 @@ Cerimônias acompanhadas no AzureDevops:
 **TecNologias empregadas:**
 * Angular
 * MaterialUI
+
+### Dificuldades no Projeto:
+
+O tempo para análise, desenvolvimento, testes e deploy foi nosso principal obstáculo visto que os integrantes possuiam pouco tempo diurno e no turno da noite tínhamos o curso para ser realizado.
+
+### Aprendizados:
+
+Aplicação da agenda de trabalho em grupo no decorrer do projeto,  aplicação de padrões de projeto e utilização de conceitos avançados de desenvolvimento web. 
+
