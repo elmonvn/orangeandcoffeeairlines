@@ -18,6 +18,8 @@
             </summary>
             <param name="localDestino"></param>
             <param name="dataVolta"></param>
+            <param name="localIda"></param>
+            <param name="dataIda"></param>
             <returns></returns>
         </member>
     </members>

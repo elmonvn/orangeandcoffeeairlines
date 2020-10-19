@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using OCAirLines.Passagem.Services.Interfaces;
+using OCAirLines.Passagem.TravelApi.RakutenRapidApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using OCAirLines.Passagem.Services.Interfaces;
-using OCAirLines.Passagem.TravelApi.RakutenRapidApi;
 
 namespace OCAirLines.Passagem.Controllers
 {
@@ -30,15 +31,15 @@ namespace OCAirLines.Passagem.Controllers
             {
                 var result = passagemServices.BuscaPorLocal(filtrp);
                 if (!result.Result.Succeeded)
-                    return BadRequest(new { status = false,message="Não foi possivel completar a busca."});
+                    return BadRequest(new { status = false, message = "Não foi possivel completar a busca." });
                 //var result  = await Skyscanner.BuscarLocalAsync(filtrp);
                 return Ok(new { status = true, content = result });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { status = false, message = "Falha durante a busca.", errorMessage = ex.Message,error = ex.StackTrace });
+                return BadRequest(new { status = false, message = "Falha durante a busca.", errorMessage = ex.Message, error = ex.StackTrace });
             }
-            
+
         }
         /// <summary>
         /// localIda e dataIda são obrigatorios.
@@ -49,12 +50,15 @@ namespace OCAirLines.Passagem.Controllers
         /// <param name="localIda"></param>
         /// <param name="dataIda"></param>
         /// <returns></returns>
-        [HttpGet("buscar/voos/{localIda}/{localDestino}/{dataIda}/{dataVolta}")]
-        public async Task<ActionResult> BuscarVoos( string localDestino, string dataVolta, string localIda, string dataIda)
+        [HttpGet("buscar/voos/{localIda}/{localVolta}/{dataIda}/{dataVolta}")]
+        public async Task<ActionResult> BuscarVoos(string localIda, string localVolta, string dataIda, string dataVolta )
         {
             try
             {
-                var retorno = await passagemServices.BuscaPorVoos(localIda, localDestino, dataIda, dataVolta);
+                if (String.IsNullOrEmpty(localVolta) || String.IsNullOrEmpty(dataVolta) || String.IsNullOrEmpty(localIda) || String.IsNullOrEmpty(dataIda))
+                    return BadRequest(new { status = false, message = "Todos os campos devem ser preenchido para a busca!" });
+
+                var retorno = await passagemServices.BuscaPorVoos(localIda, localVolta, dataIda, dataVolta);
                 if (!retorno.Succeeded)
                     return BadRequest(new { status = false, message = "Não foi possivel completar a busca." });
                 //var result  = await Skyscanner.BuscarLocalAsync(filtrp);
@@ -64,9 +68,6 @@ namespace OCAirLines.Passagem.Controllers
             {
                 return BadRequest(new { status = false, message = "Falha durante a busca.", errorMessage = ex.Message, error = ex.StackTrace });
             }
-
-            
         }
     }
-
 }
