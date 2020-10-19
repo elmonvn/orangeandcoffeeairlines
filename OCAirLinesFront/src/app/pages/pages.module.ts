@@ -16,10 +16,19 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
-
-
 @NgModule({
-  declarations: [HomeComponent, SignUpComponent, LoginComponent, MainPageComponent, ProfileComponent, SearchFlightsComponent, PaymentComponent, ShareFlightComponent, MainMenuComponent],
+  declarations: [
+    HomeComponent,
+    SignUpComponent,
+    LoginComponent,
+    MainPageComponent,
+    ProfileComponent,
+    SearchFlightsComponent,
+    PaymentComponent,
+    ShareFlightComponent,
+    MainMenuComponent
+  ],
+  exports: [HomeComponent],
   imports: [
     CommonModule,
     LayoutModule,
@@ -30,4 +39,4 @@ import { MatListModule } from '@angular/material/list';
     MatListModule
   ]
 })
-export class PagesModule { }
+export class PagesModule {}
