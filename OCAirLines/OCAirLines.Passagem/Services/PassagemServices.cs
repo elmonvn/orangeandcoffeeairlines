@@ -1,27 +1,33 @@
-﻿using OCAirLines.Passagem.Services.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using OCAirLines.Database.Helpers;
+using OCAirLines.Passagem.Services.Interfaces;
+using OCAirLines.Passagem.TravelApi.RakutenRapidApi;
 using OCAirLines.Passagem.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace OCAirLines.Passagem.Services
 {
     public class PassagemServices : IPassagemServices
     {
-        public Task<List<Lugar>> BuscaPorData(BuscaPassagem buscaPassagem)
+        public async Task<QueryResult<string>> BuscaPorVoos(string localIda, string localDestino, string dataIda, string dataVolta)
         {
-            throw new NotImplementedException();
+            var result = new QueryResult<string>();
+            var retorno = await Skyscanner.BuscarPorVoos(localIda, localDestino, dataIda, dataVolta);
+            result.Result = retorno;
+            result.Succeeded = true;
+            return result;
         }
 
-        public Task BuscaPorLocal()
+        public async Task<QueryResult<List<Lugar>>> BuscaPorLocal(string filtro) 
         {
-            throw new NotImplementedException();
-        }
-
-        Task<List<Lugar>> IPassagemServices.BuscaPorLocal()
-        {
-            throw new NotImplementedException();
+            var result = new QueryResult<List<Lugar>>();
+            result.Result = await Skyscanner.BuscarLocalAsync(filtro);
+            result.Succeeded = true;
+            return result;
         }
     }
 }

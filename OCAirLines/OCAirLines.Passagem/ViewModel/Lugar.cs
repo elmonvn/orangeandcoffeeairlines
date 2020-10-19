@@ -8,7 +8,7 @@ namespace OCAirLines.Passagem.ViewModel
 {
     public class Lugar
     {
-        public string  LugarId { get; set; }
+        public string  AeroportoId { get; set; }
         public string CidadeNome { get; set; }
         public string CidadeId { get; set; }
         public string PaisNome { get; set; }

@@ -14,7 +14,11 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SKYSCANNER_URL": "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices",
+        "SKYSCANNER_API_HOST": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+        "SKYSCANNER_API_KEY": "505a08782emshf600d4645df7d16p196c75jsnc38df934880a",
+        "SKYSCANNER_QUERYSTRING": "true"
       }
     },
     "OCAirLines.Passagem": {

@@ -4,13 +4,20 @@
         <name>OCAirLines.Passagem</name>
     </assembly>
     <members>
-        <member name="M:OCAirLines.Passagem.Controllers.Passagem.BuscarPor(System.String)">
+        <member name="M:OCAirLines.Passagem.Controllers.Passagem.Buscar(System.String)">
             <summary>
-            Opção 01 - text
-            Opção 02 - text
-            Opção 03 - text
+            Nome do lugar desejado
             </summary>
             <param name="filtro"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OCAirLines.Passagem.Controllers.Passagem.BuscarVoos(System.String,System.String,System.String,System.String)">
+            <summary>
+            localIda e dataIda são obrigatorios.
+            Osformatos de data devem ser no formatos: YYYY-MM-DD
+            </summary>
+            <param name="localDestino"></param>
+            <param name="dataVolta"></param>
             <returns></returns>
         </member>
     </members>

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Server.IIS.Core;
+﻿using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Server.IIS.Core;
 using Newtonsoft.Json.Linq;
 using OCAirLines.Passagem.ViewModel;
 using System;
@@ -13,17 +15,19 @@ namespace OCAirLines.Passagem.TravelApi.RakutenRapidApi
     public class Skyscanner
     {
         static HttpClient client = new HttpClient();
-        static string urlPrefix = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices";
+        static string urlBase = Environment.GetEnvironmentVariable("SKYSCANNER_URL");
+        static string apiHost = Environment.GetEnvironmentVariable("SKYSCANNER_API_HOST");
+        static string apiKey = Environment.GetEnvironmentVariable("SKYSCANNER_API_KEY");
+        static string apiQueriString = Environment.GetEnvironmentVariable("SKYSCANNER_QUERYSTRING");
         public static async Task<List<Lugar>> BuscarLocalAsync(string filtro)
         {
 
             client = new HttpClient();
-            string urlListPlaces = urlPrefix + $@"/autosuggest/v1.0/BR/BRL/pt-BR/?query={filtro}";
-
-            client.DefaultRequestHeaders.Add("x-rapidapi-host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com");
-            client.DefaultRequestHeaders.Add("x-rapidapi-key", "505a08782emshf600d4645df7d16p196c75jsnc38df934880a");
-            client.DefaultRequestHeaders.Add("useQueryString", "true");
-            HttpResponseMessage response = await client.GetAsync(urlListPlaces);
+            string url = urlBase + $@"/autosuggest/v1.0/BR/BRL/pt-BR/?query={filtro}";
+            client.DefaultRequestHeaders.Add("x-rapidapi-host", apiHost);
+            client.DefaultRequestHeaders.Add("x-rapidapi-key", apiKey);
+            client.DefaultRequestHeaders.Add("useQueryString", apiQueriString);
+            HttpResponseMessage response = await client.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)
                 throw new WebException("Não foi possivel completar a busca.");
@@ -33,16 +37,29 @@ namespace OCAirLines.Passagem.TravelApi.RakutenRapidApi
             foreach (var local in data.Places)
             {
                 var localResult = new Lugar();
-                localResult.LugarId = local.PlaceId;
+                localResult.AeroportoId = local.PlaceId;
                 localResult.CidadeId = local.CityId;
                 localResult.CidadeNome = local.PlaceName;
                 localResult.PaisNome = local.CountryName;
                 localResult.PaisId = local.CountryId;
                 localResultList.Add(localResult);
             }
-
             return localResultList;
+        }
 
+        internal static async Task<string> BuscarPorVoos(string localIda, string localDestino, string dataIda, string dataVolta)
+        {
+            client = new HttpClient();
+            string url = urlBase + $@"/browsedates/v1.0/BR/BRL/pt-BR/{localIda}/{localDestino}/{dataIda}/{dataVolta}";
+            client.DefaultRequestHeaders.Add("x-rapidapi-host", apiHost);
+            client.DefaultRequestHeaders.Add("x-rapidapi-key", apiKey);
+            client.DefaultRequestHeaders.Add("useQueryString", apiQueriString);
+            HttpResponseMessage response = await client.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+                throw new WebException("Não foi possivel completar a busca.");
+
+            return response.Content.ReadAsStringAsync().Result;
         }
     }
 }

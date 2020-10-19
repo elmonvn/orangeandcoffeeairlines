@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OCAirLines.Passagem.Services;
+using OCAirLines.Passagem.Services.Interfaces;
 
 namespace OCAirLines.Passagem
 {
@@ -29,6 +31,9 @@ namespace OCAirLines.Passagem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddTransient<IPassagemServices, PassagemServices>();
+
             //Swagger
             services.AddSwaggerGen();
             services.AddSwaggerGen(c =>
