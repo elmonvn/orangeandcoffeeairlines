@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OCAirLines.WebAPI.Interfaces;
@@ -13,6 +14,7 @@ namespace OCAirLines.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "webapi")]
     public class CompraController : ControllerBase
     {
         private readonly ILogger<CompraController> _logger;

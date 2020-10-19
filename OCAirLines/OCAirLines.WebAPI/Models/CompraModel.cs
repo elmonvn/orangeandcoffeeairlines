@@ -12,6 +12,5 @@ namespace OCAirLines.WebAPI.Models
         public DateTime DtCompra { get; set; }
         public int QtdParcela { get; set; }
         public bool Status { get; set; }
-
     }
 }
